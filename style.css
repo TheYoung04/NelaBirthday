@@ -7,13 +7,13 @@
     box-sizing: border-box;
 }
 :root{
-    --color-pink: #feecea;
+   --color-pink: #E8DEFF;        
     --color-white: #fff;
     --color-black: #333;
-    --color-text-pink: #FF7882;
-    --color-heart: #FF7882;
-    --color-bg-letter: #fff8e4;
-    --color-border: #DACCBF;
+    --color-text-pink: #B19CD9;  
+    --color-heart: #89CFF0;       
+    --color-bg-letter: #F5F0FF;   
+    --color-border: #B19CD9;    
 }
 html{
     height: 100%;
@@ -1022,4 +1022,5 @@ body {
     cursor: pointer;
     color: white;
     z-index: 10000000000000000;
+
 }
