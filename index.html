@@ -19,6 +19,14 @@
 </head>
 
 <body>
+    <audio id="bgMusic" loop>
+        <source src="song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="music-control" style="position: fixed; top: 10px; right: 10px; z-index: 200000000; cursor: pointer; background: white; padding: 10px; border-radius: 50%; border: 2px solid pink; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+        <i class="fa-solid fa-music" id="music-icon" style="color: #FF7882; font-size: 20px;"></i>
+    </div>
+
     <div id="wrapper">
         <div class="flag__birthday">
             <img src="1.png" alt="" width="350" class="flag__left">
@@ -150,6 +158,13 @@ You deserve love, peace, and someone who chooses you every day and I promise, I 
 ✨ Happy Birthday, my love. 🎈❤️✨
                         </h2>
 
+                        <div class="video-container" style="margin-top: 10px; text-align: center; margin-bottom: 20px;">
+                            <video width="90%" controls style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                                <source src="video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
                         <div class="imageCute2">
                             <img src="cute2.png" alt="">
                              <img id="mewmew" src="mewmew.gif" alt="" style="width:120px;display:none;">
@@ -253,9 +268,35 @@ You deserve love, peace, and someone who chooses you every day and I promise, I 
     let mailBox = document.querySelector('.mail')
     let boxmail = document.querySelector('.boxMail')
     var close = document.querySelector('.fa-xmark')
+    var bgMusic = document.getElementById("bgMusic");
+    var musicIcon = document.getElementById("music-icon");
+    var isMusicPlaying = false;
+
+    function toggleMusic() {
+        if (isMusicPlaying) {
+            bgMusic.pause();
+            musicIcon.classList.remove("fa-spin");
+            musicIcon.style.color = "#FF7882"; // pink
+        } else {
+            bgMusic.play().catch(error => {
+                console.log("Autoplay prevented:", error);
+            });
+            musicIcon.classList.add("fa-spin");
+            musicIcon.style.color = "#FF4081"; // darker pink/active
+        }
+        isMusicPlaying = !isMusicPlaying;
+    }
+
+    document.querySelector(".music-control").onclick = toggleMusic;
+
     mailBox.onclick = function () {
         mailBox.classList.toggle('active')
         boxmail.classList.add('active')
+
+        // Auto play music when opening the card if not already playing
+        if (!isMusicPlaying) {
+            toggleMusic();
+        }
     }
 
     close.addEventListener('click', function () {
